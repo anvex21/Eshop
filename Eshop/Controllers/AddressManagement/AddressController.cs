@@ -14,13 +14,23 @@ namespace Eshop.Controllers.AddressManagement
             _service = service;
         }
 
+        /// <summary>
+        /// Gets all the addresses
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("GetAllAddresses")]
         public IActionResult GetAll()
         {
             return Ok(_service.GetAll());
         }
 
-        [HttpGet("GetById/{id:long}")]
+        /// <summary>
+        /// Gets an address by an id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+
+        [HttpGet("GetById/{id}")]
         public IActionResult GetById(long id)
         {
             AddressDto result = _service.GetById(id);
@@ -29,13 +39,25 @@ namespace Eshop.Controllers.AddressManagement
             return Ok(result);
         }
 
+        /// <summary>
+        /// Adds a new address
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+
         [HttpPost("AddAddress")]
-        public IActionResult Create([FromBody] AddressDto dto)
+        public IActionResult Create(AddressDto dto)
         {
             _service.Create(dto);
             return Ok();
         }
 
+        /// <summary>
+        /// Updates an existing address
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         [HttpPut("UpdateAddress/{id}")]
         public IActionResult Update(long id, [FromBody] AddressDto dto)
         {
@@ -48,20 +70,38 @@ namespace Eshop.Controllers.AddressManagement
             return Ok();
         }
 
-        [HttpDelete("DeleteAddress/{id:long}")]
+        /// <summary>
+        /// Deletes an address
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+
+        [HttpDelete("DeleteAddress/{id}")]
         public IActionResult Delete(long id)
         {
             _service.Delete(id);
             return Ok();
         }
 
-        [HttpGet("GetByCountryId/{countryId:long}")]
+        /// <summary>
+        /// Gets an address by a country id
+        /// </summary>
+        /// <param name="countryId"></param>
+        /// <returns></returns>
+
+        [HttpGet("GetByCountryId/{countryId}")]
         public IActionResult GetByCountryId(long countryId)
         {
             return Ok(_service.GetByCountryId(countryId));
         }
 
-        [HttpGet("GetByClientId/{clientId:long}")]
+        /// <summary>
+        /// Gets an address by a client id
+        /// </summary>
+        /// <param name="clientId"></param>
+        /// <returns></returns>
+
+        [HttpGet("GetByClientId/{clientId}")]
         public IActionResult GetByClientId(long clientId)
         {
             return Ok(_service.GetByClientId(clientId));
