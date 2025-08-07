@@ -96,7 +96,32 @@ public class CountryController : ControllerBase
             return NotFound("Country not found.");
 
         countryRepository.Delete(country);
-        return Ok($"Country with ID {id} deleted.");
+        return Ok($"Country with ID {id} has been deleted.");
+    }
+
+    /// <summary>
+    /// Searches for a country based on a passed keyword, returns all the available information for it.
+    /// </summary>
+    /// <param name="keyword"></param>
+    /// <returns></returns>
+    [HttpGet("SearchForACountry")]
+    public IActionResult Search(string keyword) {
+        if (string.IsNullOrWhiteSpace(keyword))
+        {
+            return BadRequest("Keyword cannot be empty");
+        }
+        string finalKeyword = keyword.Trim().ToLower();
+        IEnumerable<Country> results = countryRepository.GetAll()
+            .Where(c =>
+            (c.IsoName != null && c.IsoName.ToLowerInvariant().Contains(finalKeyword)) ||
+            (c.Iso2 != null && c.Iso2.ToLowerInvariant().Contains(finalKeyword)) ||
+            (c.Iso3 != null && c.Iso3.ToLowerInvariant().Contains(finalKeyword)))
+        .ToList();
+        if (!results.Any())
+        {
+            return NotFound("No country found with this keyword");
+        }
+        return Ok(results);
     }
 }
 
