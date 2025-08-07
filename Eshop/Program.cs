@@ -1,8 +1,10 @@
+using Contracts.Repository.AddressManagement;
 using Contracts.Repository.CountryManagement;
 using Contracts.Repository.ProductManagement;
 using Contracts.Services.ProductManagement;
 using Eshop.Configuration;
 using Microsoft.EntityFrameworkCore;
+using Repository.AddressManagement;
 using Repository.CountryManagement;
 using Repository.ProductManagement;
 using Services.ProductManagement;
@@ -21,6 +23,8 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICountryRepository, CountryRepository>();
 builder.Services.AddScoped<ICountryService, CountryService>();
+builder.Services.AddScoped<IAddressRepository, AddressRepository>();
+builder.Services.AddScoped<IAddressService, AddressService>();
 
 
 // Registers MVC controllers to the DI container. This enables routing, model binding, and controller-based API endpoints.
