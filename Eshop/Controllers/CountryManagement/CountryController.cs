@@ -123,5 +123,15 @@ public class CountryController : ControllerBase
         }
         return Ok(results);
     }
+
+    [HttpGet("GetAllIso2Codes")]
+    public IActionResult GetAllIso2Codes() {
+        var iso2Codes = countryRepository.GetAll().Select(c => new {c.Iso2}).ToList();
+        if (!iso2Codes.Any())
+        {
+            return NotFound("Iso2 codes not found.");
+        }
+        return Ok(iso2Codes);
+    }
 }
 
