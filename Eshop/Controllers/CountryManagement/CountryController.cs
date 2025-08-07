@@ -124,6 +124,11 @@ public class CountryController : ControllerBase
         return Ok(results);
     }
 
+    /// <summary>
+    /// Gets all the Iso2 codes in the database
+    /// </summary>
+    /// <returns></returns>
+
     [HttpGet("GetAllIso2Codes")]
     public IActionResult GetAllIso2Codes() {
         var iso2Codes = countryRepository.GetAll().Select(c => new {c.Iso2}).ToList();
