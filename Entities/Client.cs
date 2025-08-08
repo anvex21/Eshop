@@ -32,6 +32,7 @@ public class Client
     /// </summary>
     public Account Account { get; set; }
 
+
     /// <summary>
     /// Addresses
     /// </summary>
