@@ -2,6 +2,7 @@ using Contracts.Repository.AddressManagement;
 using Contracts.Repository.ClientManagement;
 using Contracts.Repository.CountryManagement;
 using Contracts.Repository.ProductManagement;
+using Contracts.Repository.SaleManagement;
 using Contracts.Services.ProductManagement;
 using Eshop.Configuration;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using Repository.AddressManagement;
 using Repository.ClientManagement;
 using Repository.CountryManagement;
 using Repository.ProductManagement;
+using Repository.SaleManagement;
 using Services.ProductManagement;
 
 // Creates a new `WebApplicationBuilder` instance**, which:
@@ -29,6 +31,8 @@ builder.Services.AddScoped<IAddressRepository, AddressRepository>();
 builder.Services.AddScoped<IAddressService, AddressService>();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IClientService, ClientService>();
+builder.Services.AddScoped<ISaleRepository, SaleRepository>();
+builder.Services.AddScoped<ISaleService, SaleService>();
 
 
 // Registers MVC controllers to the DI container. This enables routing, model binding, and controller-based API endpoints.
