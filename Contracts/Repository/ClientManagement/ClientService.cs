@@ -11,11 +11,13 @@ namespace Contracts.Repository.ClientManagement
     {
         private readonly IClientRepository _repository;
 
+        // Constructor
         public ClientService(IClientRepository repository)
         {
             _repository = repository;
         }
 
+        // Gets all the clients in the databse
         public IEnumerable<ClientDto> GetAll()
         {
             return _repository.GetAll().Select(c => new ClientDto
@@ -28,6 +30,8 @@ namespace Contracts.Repository.ClientManagement
                 AddressIds = c.Addresses?.Select(a => a.Id).ToList() ?? new List<long>(),
             });
         }
+
+        // Gets information about hte client by its id
 
         public ClientDto GetById(long id)
         {
@@ -45,6 +49,8 @@ namespace Contracts.Repository.ClientManagement
             };
         }
 
+        // Adds a new client to the database
+
         public void Create(ClientDto dto)
         {
             var client = new Client
@@ -60,6 +66,7 @@ namespace Contracts.Repository.ClientManagement
             _repository.Save();
         }
 
+        // Updates an existing client
         public void Update(ClientDto dto)
         {
             var client = _repository.GetById(dto.Id);
@@ -75,6 +82,7 @@ namespace Contracts.Repository.ClientManagement
             _repository.Save();
         }
 
+        // Deletes a client
         public void Delete(long id)
         {
             var client = _repository.GetById(id);

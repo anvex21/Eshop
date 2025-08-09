@@ -8,7 +8,13 @@ namespace Contracts.Repository.SaleManagement
 {
     public class SaleUpdateDto
     {
+        /// <summary>
+        /// Quantity
+        /// </summary>
         public double Quantity { get; set; }
+        /// <summary>
+        /// OrderDate
+        /// </summary>
         public DateTime OrderDate { get; set; }
     }
 }

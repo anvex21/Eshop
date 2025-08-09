@@ -16,6 +16,7 @@ namespace Repository.ClientManagement
         {
             _context = context;
         }
+        // Gets all clients
         public IEnumerable<Client> GetAll()
         {
             return _context.Clients
@@ -23,6 +24,7 @@ namespace Repository.ClientManagement
                 .Include(c => c.Sales)
                 .ToList();
         }
+        // Gets a client by its id
         public Client GetById(long id)
         {
             return _context.Clients
@@ -30,20 +32,27 @@ namespace Repository.ClientManagement
                 .Include(c => c.Sales)
                 .FirstOrDefault(c => c.Id == id);
         }
+        // Creates a client
         public void Create(Client client)
         {
             _context.Clients.Add(client);
         }
+
+        // Updates a client
 
         public void Update(Client client)
         {
             _context.Clients.Update(client);
         }
 
+        // Deletes a client
+
         public void Delete(Client client)
         {
             _context.Clients.Remove(client);
         }
+
+        // Saves changes
 
         public void Save()
         {

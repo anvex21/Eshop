@@ -13,10 +13,13 @@ namespace Repository.AddressManagement
     {
         private readonly RepositoryContext _context;
 
+        // Constructor
         public AddressRepository(RepositoryContext context)
         {
             _context = context;
         }
+
+        // Gets all addresses
 
         public IEnumerable<Address> GetAll()
         {
@@ -26,6 +29,7 @@ namespace Repository.AddressManagement
                 .ToList();
         }
 
+        // Gets an address by its id
         public Address GetById(long id)
         {
             return _context.Addresses
@@ -34,11 +38,14 @@ namespace Repository.AddressManagement
                 .FirstOrDefault(a => a.Id == id);
         }
 
+        // Creates an address
         public void Create(Address address)
         {
             _context.Addresses.Add(address);
             _context.SaveChanges();
         }
+        
+        // Updates an address
 
         public void Update(Address address)
         {
@@ -46,11 +53,14 @@ namespace Repository.AddressManagement
             _context.SaveChanges();
         }
 
+        // Deletes an address
         public void Delete(Address address)
         {
             _context.Addresses.Remove(address);
             _context.SaveChanges();
         }
+
+        // Gets an address by the country's id
 
         public IEnumerable<Address> GetAddressesByCountryId(long countryId)
         {
@@ -60,6 +70,8 @@ namespace Repository.AddressManagement
                 .Where(a => a.CountryId == countryId)
                 .ToList();
         }
+
+        // Gets an address by the client's id
 
         public IEnumerable<Address> GetAddressesByClientId(long clientId)
         {

@@ -18,6 +18,8 @@ namespace Repository.SaleManagement
             _context = context;
         }
 
+        // Gets all sales
+
         public async Task<IEnumerable<Sale>> GetAllAsync()
         {
             return await _context.Sales
@@ -26,6 +28,8 @@ namespace Repository.SaleManagement
                 .ToListAsync();
         }
 
+        // Gets a sale by its id
+
         public async Task<Sale> GetByIdAsync(long id)
         {
             return await _context.Sales
@@ -33,6 +37,8 @@ namespace Repository.SaleManagement
                 .Include(s => s.Product)
                 .FirstOrDefaultAsync(s => s.Id == id);
         }
+
+        // Gets a sale by the client's id
 
         public async Task<IEnumerable<Sale>> GetByClientIdAsync(long clientId)
         {
@@ -43,6 +49,7 @@ namespace Repository.SaleManagement
                 .ToListAsync();
         }
 
+        // Gets a sale by the product's id
         public async Task<IEnumerable<Sale>> GetByProductIdAsync(long productId)
         {
             return await _context.Sales
@@ -52,6 +59,7 @@ namespace Repository.SaleManagement
                 .ToListAsync();
         }
 
+        // Creates a sale
         public async Task<Sale> CreateAsync(Sale sale)
         {
             _context.Sales.Add(sale);
@@ -59,17 +67,22 @@ namespace Repository.SaleManagement
             return sale;
         }
 
+        // Updates a sale
+
         public async Task UpdateAsync(Sale sale)
         {
             _context.Sales.Update(sale);
             await _context.SaveChangesAsync();
         }
 
+        // Deletes a sale
+
         public async Task DeleteAsync(Sale sale)
         {
             _context.Sales.Remove(sale);
             await _context.SaveChangesAsync();
         }
+
 
         public async Task<bool> ExistsAsync(long id)
         {

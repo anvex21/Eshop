@@ -10,6 +10,7 @@ namespace Contracts.Repository.CountryManagement
 {
     public class CountryService : ICountryService
     {
+        // Creates a new country
         public Country CreateFromDto(CountryCreateDto dto)
         {
             return new Country
@@ -21,6 +22,7 @@ namespace Contracts.Repository.CountryManagement
             };
         }
 
+        // Updates an existing country
         public Country UpdateFromDto(Country country, CountryUpdateDto dto)
         {
             country.IsoName = dto.IsoName;

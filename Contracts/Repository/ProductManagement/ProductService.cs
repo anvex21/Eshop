@@ -6,6 +6,11 @@ namespace Services.ProductManagement
 {
     public class ProductService : IProductService
     {
+        /// <summary>
+        /// Creates a new product
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         public Product CreateProductFromDto(ProductCreateDto dto)
         {
             return new Product
