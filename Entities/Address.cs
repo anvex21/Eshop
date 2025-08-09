@@ -1,4 +1,6 @@
-﻿namespace Entities;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Entities;
 
 public class Address
 {
@@ -10,6 +12,7 @@ public class Address
     /// <summary>
     /// Client Id
     /// </summary>
+    [Required]
     public long ClientId { get; set; }
 
     /// <summary>
@@ -20,6 +23,7 @@ public class Address
     /// <summary>
     /// Country Id
     /// </summary>
+    [Required]
     public long CountryId { get; set; }
 
     /// <summary>
@@ -30,16 +34,22 @@ public class Address
     /// <summary>
     /// City
     /// </summary>
+    [Required]
+    [StringLength(50)]
     public string City { get; set; }
 
     /// <summary>
     /// Street
     /// </summary>
+    [Required]
+    [StringLength(100)]
     public string Street { get; set; }
 
     /// <summary>
     /// Number
     /// </summary>
+    [Required]
+    [StringLength(20)]
     public string Number { get; set; }
 
     /// <summary>

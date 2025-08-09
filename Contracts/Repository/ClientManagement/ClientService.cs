@@ -86,7 +86,7 @@ namespace Contracts.Repository.ClientManagement
         public void Delete(long id)
         {
             var client = _repository.GetById(id);
-            if (client == null) return;
+            if (client is null) return;
 
             _repository.Delete(client);
             _repository.Save();

@@ -1,4 +1,6 @@
-﻿namespace Entities;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Entities;
 
 public class Sale
 {
@@ -10,6 +12,7 @@ public class Sale
     /// <summary>
     /// Client Id
     /// </summary>
+    [Required]
     public long ClientId { get; set; }
 
     /// <summary>
@@ -20,6 +23,7 @@ public class Sale
     /// <summary>
     /// Product Id
     /// </summary>
+    [Required]
     public long ProductId { get; set; }
 
     /// <summary>
@@ -30,10 +34,14 @@ public class Sale
     /// <summary>
     /// Quantity
     /// </summary>
+    [Required]
+    [Range(0.01, double.MaxValue)]
     public double Quantity { get; set; }
 
     /// <summary>
     /// Order Date
     /// </summary>
+    [Required]
+    [DataType(DataType.Date)]
     public DateTime OrderDate { get; set; }
 }
