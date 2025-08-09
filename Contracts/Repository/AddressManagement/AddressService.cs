@@ -74,11 +74,8 @@ namespace Contracts.Repository.AddressManagement
 
         private AddressDto Map(Address address) => new()
         {
-            Id = address.Id,
             ClientId = address.ClientId,
-            FirstName = address.Client != null ? $"{address.Client.FirstName}" : null,
             CountryId = address.CountryId,
-            IsoName = address.Country != null ? address.Country.IsoName : null,
             City = address.City,
             Street = address.Street,
             Number = address.Number,

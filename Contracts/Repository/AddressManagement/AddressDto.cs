@@ -12,7 +12,7 @@ namespace Contracts.Repository.AddressManagement
         /// <summary>
         /// Address Id
         /// </summary>
-        public long Id { get; set; }
+        public long Id { get; }
 
         /// <summary>
         /// Client Id
@@ -20,10 +20,6 @@ namespace Contracts.Repository.AddressManagement
         [Required]
         public long ClientId { get; set; }
 
-        /// <summary>
-        /// Client's first name
-        /// </summary>
-        public string FirstName { get; set; }
         
         /// <summary>
         /// Country Id
@@ -34,11 +30,7 @@ namespace Contracts.Repository.AddressManagement
         /// <summary>
         /// IsoName
         /// </summary>
-        public string IsoName { get; set; }
-
-        /// <summary>
-        /// City
-        /// </summary>
+        
         [Required]
         [StringLength(50)]
         public string City { get; set; }

@@ -137,7 +137,7 @@ public class ProductController : ControllerBase
     }
 
     /// <summary>
-    /// Returns the products sorted by their price, ascending
+    /// Returns the products sorted by their price, descending
     /// </summary>
     /// <param name="sortOrder"></param>
     /// <returns></returns>
@@ -149,7 +149,7 @@ public class ProductController : ControllerBase
         {
             return NotFound("No products found.");
         }
-        products = products.OrderBy(p => p.Price).ToList();
+        products = products.OrderByDescending(p => p.Price).ToList();
         return Ok(products);
     }
 }
