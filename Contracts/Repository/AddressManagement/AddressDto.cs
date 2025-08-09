@@ -19,11 +19,23 @@ namespace Contracts.Repository.AddressManagement
         /// </summary>
         [Required]
         public long ClientId { get; set; }
+
+        /// <summary>
+        /// Client's first name
+        /// </summary>
+        public string FirstName { get; set; }
+        
         /// <summary>
         /// Country Id
         /// </summary>
         [Required]
         public long CountryId { get; set; }
+
+        /// <summary>
+        /// IsoName
+        /// </summary>
+        public string IsoName { get; set; }
+
         /// <summary>
         /// City
         /// </summary>

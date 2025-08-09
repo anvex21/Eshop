@@ -45,7 +45,6 @@ public class ProductController : ControllerBase
         return Ok(allProducts);
     }
 
-    // GetProductById - Get, AddProduct - Post
     /// <summary>
     /// Gets product by ID
     /// </summary>
@@ -134,6 +133,23 @@ public class ProductController : ControllerBase
             return NotFound($"No products of type '{type}' found.");
         }
 
+        return Ok(products);
+    }
+
+    /// <summary>
+    /// Returns the products sorted by their price, ascending
+    /// </summary>
+    /// <param name="sortOrder"></param>
+    /// <returns></returns>
+    [HttpGet("SortedByPrice")]
+    public IActionResult GetAllProductsSortedByPrice()
+    {
+        IEnumerable<Product> products = productRepository.GetAll();
+        if (!products.Any())
+        {
+            return NotFound("No products found.");
+        }
+        products = products.OrderBy(p => p.Price).ToList();
         return Ok(products);
     }
 }

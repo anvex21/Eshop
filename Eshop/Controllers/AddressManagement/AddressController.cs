@@ -59,11 +59,11 @@ namespace Eshop.Controllers.AddressManagement
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPut("UpdateAddress/{id}")]
-        public IActionResult Update(long id, [FromBody] AddressDto dto)
+        public IActionResult Update(long id, AddressDto dto)
         {
             AddressDto existingAddress = _service.GetById(id);
 
-            if (existingAddress == null)
+            if (existingAddress is null)
                 return NotFound($"Address with id {id} not found.");
 
             _service.Update(dto);
@@ -105,6 +105,20 @@ namespace Eshop.Controllers.AddressManagement
         public IActionResult GetByClientId(long clientId)
         {
             return Ok(_service.GetByClientId(clientId));
+        }
+
+        [HttpGet("GetAllMainAddresses/{clientId}")]
+        public IActionResult GetMainAddresses(long clientId)
+        {
+            List<AddressDto> mainAddresses = _service.GetByClientId(clientId)
+                .Where(a => a.IsMain == true)
+                .ToList();
+            if (!mainAddresses.Any())
+            {
+                return NotFound("No main addresses found.");
+            }
+            return Ok(mainAddresses);
+           
         }
     }
 }

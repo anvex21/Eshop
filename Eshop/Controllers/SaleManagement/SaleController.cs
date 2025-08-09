@@ -1,5 +1,8 @@
 ﻿using Contracts.Repository.SaleManagement;
+using Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Repository.ProductManagement;
 
 namespace Eshop.Controllers.SaleManagement
 {
