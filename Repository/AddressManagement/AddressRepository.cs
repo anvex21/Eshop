@@ -26,7 +26,7 @@ namespace Repository.AddressManagement
                 .ToList();
         }
 
-        public Address? GetById(long id)
+        public Address GetById(long id)
         {
             return _context.Addresses
                 .Include(a => a.Client)

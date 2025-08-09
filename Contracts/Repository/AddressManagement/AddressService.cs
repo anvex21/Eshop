@@ -60,6 +60,7 @@ namespace Contracts.Repository.AddressManagement
 
         private AddressDto Map(Address address) => new()
         {
+            Id = address.Id,
             ClientId = address.ClientId,
             CountryId = address.CountryId,
             City = address.City,
@@ -70,6 +71,7 @@ namespace Contracts.Repository.AddressManagement
 
         private Address Map(AddressDto dto) => new()
         {
+            Id = dto.Id,
             ClientId = dto.ClientId,
             CountryId = dto.CountryId,
             City = dto.City,

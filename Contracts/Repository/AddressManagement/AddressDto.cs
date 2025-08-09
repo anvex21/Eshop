@@ -8,6 +8,7 @@ namespace Contracts.Repository.AddressManagement
 {
     public class AddressDto
     {
+        public long Id { get; set; }
         public long ClientId { get; set; }
         public long CountryId { get; set; }
         public string City { get; set; }

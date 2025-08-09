@@ -12,11 +12,6 @@ public class RepositoryContext : DbContext
     {
     }
     /// <summary>
-    /// Accounts
-    /// </summary>
-    public DbSet<Account> Accounts { get; set; }
-
-    /// <summary>
     /// Addresses
     /// </summary>
     public DbSet<Address> Addresses { get; set; }

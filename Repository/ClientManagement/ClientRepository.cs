@@ -20,7 +20,6 @@ namespace Repository.ClientManagement
         {
             return _context.Clients
                 .Include(c => c.Addresses)
-                .Include(c => c.Account)
                 .Include(c => c.Sales)
                 .ToList();
         }
@@ -28,7 +27,6 @@ namespace Repository.ClientManagement
         {
             return _context.Clients
                 .Include(c => c.Addresses)
-                .Include(c => c.Account)
                 .Include(c => c.Sales)
                 .FirstOrDefault(c => c.Id == id);
         }

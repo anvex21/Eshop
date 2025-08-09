@@ -28,12 +28,6 @@ public class Client
     public string Sex { get; set; }
 
     /// <summary>
-    /// Account
-    /// </summary>
-    public Account Account { get; set; }
-
-
-    /// <summary>
     /// Addresses
     /// </summary>
     public List<Address> Addresses { get; set; }
