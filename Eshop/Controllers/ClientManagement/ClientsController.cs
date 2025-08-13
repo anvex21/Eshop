@@ -46,8 +46,15 @@ namespace Eshop.Controllers.ClientManagement
         [HttpPost("AddClient")]
         public IActionResult Create(ClientDto dto)
         {
-            _service.Create(dto);
-            return CreatedAtAction(nameof(GetById), new { id = dto.Id }, dto);
+            if(ModelState.IsValid)
+            {
+                _service.Create(dto);
+                return CreatedAtAction(nameof(GetById), new { id = dto.Id }, dto);
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
         }
 
         /// <summary>
@@ -59,11 +66,18 @@ namespace Eshop.Controllers.ClientManagement
         [HttpPut("UpdateClient/{id}")]
         public IActionResult Update(long id,ClientDto dto)
         {
-            if (id != dto.Id)
-                return BadRequest();
+            if(ModelState.IsValid)
+            {
+                if (id != dto.Id)
+                    return BadRequest();
 
-            _service.Update(dto);
-            return NoContent();
+                _service.Update(dto);
+                return NoContent();
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
         }
 
         /// <summary>

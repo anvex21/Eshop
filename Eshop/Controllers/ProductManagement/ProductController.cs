@@ -71,10 +71,18 @@ public class ProductController : ControllerBase
     [HttpPost("AddProduct")]
     public IActionResult AddProduct(ProductCreateDto dto)
     {
-        Product product = productService.CreateProductFromDto(dto);
-        productRepository.Create(product);
+        if(ModelState.IsValid)
+        {
+            Product product = productService.CreateProductFromDto(dto);
+            productRepository.Create(product);
 
-        return Ok(product);
+            return Ok(product);
+        }
+        else
+        {
+            return BadRequest(ModelState);
+        }
+        
     }
 
 
@@ -87,19 +95,26 @@ public class ProductController : ControllerBase
     [HttpPut("UpdateProduct/{id}")]
     public IActionResult UpdateProduct(long id, ProductUpdateDto dto)
     {
-        Product product = productRepository.GetById(id);
-        if (product is null)
+        if(ModelState.IsValid)
         {
-            return NotFound("Product not found.");
+            Product product = productRepository.GetById(id);
+            if (product is null)
+            {
+                return NotFound("Product not found.");
+            }
+
+            product.Name = dto.Name;
+            product.Type = dto.Type;
+            product.Price = dto.Price;
+
+            productRepository.Update(product);
+
+            return Ok(product);
         }
-
-        product.Name = dto.Name;
-        product.Type = dto.Type;
-        product.Price = dto.Price;
-
-        productRepository.Update(product);
-
-        return Ok(product);
+        else
+        {
+            return BadRequest(ModelState);
+        }
     }
     /// <summary>
     /// Deletes a product by ID

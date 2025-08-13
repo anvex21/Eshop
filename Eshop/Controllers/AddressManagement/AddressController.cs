@@ -48,8 +48,15 @@ namespace Eshop.Controllers.AddressManagement
         [HttpPost("AddAddress")]
         public IActionResult Create(AddressDto dto)
         {
-            _service.Create(dto);
-            return Ok();
+            if (ModelState.IsValid)
+            {
+                _service.Create(dto);
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
         }
 
         /// <summary>
@@ -61,13 +68,21 @@ namespace Eshop.Controllers.AddressManagement
         [HttpPut("UpdateAddress/{id}")]
         public IActionResult Update(long id, AddressDto dto)
         {
-            AddressDto existingAddress = _service.GetById(id);
+            if(ModelState.IsValid)
+            {
+                AddressDto existingAddress = _service.GetById(id);
 
-            if (existingAddress is null)
-                return NotFound($"Address with id {id} not found.");
+                if (existingAddress is null)
+                    return NotFound($"Address with id {id} not found.");
 
-            _service.Update(dto);
-            return Ok();
+                _service.Update(dto);
+                return Ok();
+
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
         }
 
         /// <summary>

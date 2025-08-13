@@ -54,9 +54,16 @@ public class CountryController : ControllerBase
     [HttpPost("AddCountry")]
     public IActionResult Add(CountryCreateDto dto)
     {
-        Country country = countryService.CreateFromDto(dto);
-        countryRepository.Create(country);
-        return Ok(country);
+        if (ModelState.IsValid)
+        {
+            Country country = countryService.CreateFromDto(dto);
+            countryRepository.Create(country);
+            return Ok(country);
+        }
+        else
+        {
+            return BadRequest(ModelState)
+        }
     }
 
     /// <summary>
@@ -69,17 +76,24 @@ public class CountryController : ControllerBase
     [HttpPut("UpdateCountry/{id}")]
     public IActionResult Update(long id, CountryUpdateDto dto)
     {
-        Country country = countryRepository.GetById(id);
-        if (country is null)
-            return NotFound("Country not found.");
+        if(ModelState.IsValid)
+        {
+            Country country = countryRepository.GetById(id);
+            if (country is null)
+                return NotFound("Country not found.");
 
-        country.IsoName = dto.IsoName;
-        country.Iso2 = dto.Iso2;
-        country.Iso3 = dto.Iso3;
-        country.PhoneCode = dto.PhoneCode;
+            country.IsoName = dto.IsoName;
+            country.Iso2 = dto.Iso2;
+            country.Iso3 = dto.Iso3;
+            country.PhoneCode = dto.PhoneCode;
 
-        countryRepository.Update(country);
-        return Ok(country);
+            countryRepository.Update(country);
+            return Ok(country);
+        }
+        else
+        {
+            return BadRequest(ModelState)
+        }
     }
 
     /// <summary>

@@ -75,8 +75,15 @@ namespace Eshop.Controllers.SaleManagement
         [HttpPost("AddSale")]
         public async Task<IActionResult> Create(SaleCreateDto dto)
         {
-            SaleDto sale = await _saleService.CreateAsync(dto);
-            return CreatedAtAction(nameof(GetById), new { id = sale.Id }, sale);
+            if(ModelState.IsValid)
+            {
+                SaleDto sale = await _saleService.CreateAsync(dto);
+                return CreatedAtAction(nameof(GetById), new { id = sale.Id }, sale);
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
         }
 
         /// <summary>
@@ -89,8 +96,15 @@ namespace Eshop.Controllers.SaleManagement
         [HttpPut("UpdateSale/{id}")]
         public async Task<IActionResult> Update(long id, SaleUpdateDto dto)
         {
-            await _saleService.UpdateAsync(id, dto);
-            return NoContent();
+            if(ModelState.IsValid)
+            {
+                await _saleService.UpdateAsync(id, dto);
+                return NoContent();
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
         }
 
         /// <summary>
